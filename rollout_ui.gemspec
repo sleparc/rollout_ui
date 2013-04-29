@@ -15,7 +15,6 @@ Gem::Specification.new do |gem|
   gem.test_files    = Dir["spec/**/*"]
   gem.require_paths = ["lib"]
 
-  gem.add_runtime_dependency('sleparc/rollout')
 
   gem.add_development_dependency('rake')
   gem.add_development_dependency('rails')
