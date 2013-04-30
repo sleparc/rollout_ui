@@ -1,6 +1,6 @@
 module RolloutUi
   class FeaturesController < RolloutUi::ApplicationController
-    before_filter :wrapper, :only => [:index]
+    before_filter :wrapper, :only => [:index, :create]
 
     def index
       @features = @wrapper.features.map{ |feature| RolloutUi::Feature.new(feature) }
@@ -13,6 +13,11 @@ module RolloutUi
       @feature.groups     = params["groups"]     if params["groups"]
       @feature.user_ids   = params["users"]      if params["users"]
 
+      redirect_to features_path
+    end
+
+    def create
+      @wrapper.add_feature(params[:name]) unless params[:name].blank?
       redirect_to features_path
     end
 

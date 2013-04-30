@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     rollout_ui (0.2.0)
-      rollout (~> 1.1)
+      rollout (>= 1.1)
 
 GEM
   remote: http://rubygems.org/

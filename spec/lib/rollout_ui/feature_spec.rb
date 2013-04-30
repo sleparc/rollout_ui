@@ -13,6 +13,10 @@ describe RolloutUi::Feature do
       $rollout.activate_percentage(:featureA, 75)
       @feature.percentage.should == "75"
     end
+
+    it "returns 0% if there is no percentage set for the feature" do
+      @feature.percentage.should == 0
+    end
   end
 
   describe "#percentage=" do
