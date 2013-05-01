@@ -26,12 +26,16 @@ module RolloutUi
     end
 
     def groups=(groups)
-      redis.del(groups_key(name))
+      groups_key(name).each do |group|
+        rollout.deactivate_group(name, group)
+      end
       groups.each { |group| rollout.activate_group(name, group) unless group.to_s.empty? }
     end
 
     def user_ids=(ids)
-      redis.del(users_key(name))
+      users_key(name).each do |id|
+        rollout.deactivate_user(name, User.new(id))
+      end
       ids.each { |id| rollout.activate_user(name, User.new(id)) unless id.to_s.empty? }
     end
 
