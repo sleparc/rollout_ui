@@ -72,5 +72,12 @@ module RolloutUi
 
       redirect url_path
     end
+
+    post '/features' do
+      @wrapper = RolloutUi::Wrapper.new
+      @wrapper.add_feature(params["name"]) unless params["name"].blank?
+      redirect url_path
+    end
+
   end
 end
