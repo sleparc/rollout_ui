@@ -5,7 +5,7 @@
     <label>Percentage</label>
     <select class="percentage" name="percentage">
       <% 101.times do |i| %>
-        <option value="<%= i %>"<%= " selected='selected'" if feature.percentage == i.to_s %>><%= i %>%</option>
+        <option value="<%= i %>"<%= " selected='selected'" if feature.percentage == i %>><%= i %>%</option>
       <% end %>
     </select>
     <input type="submit" value="Save" />
@@ -28,7 +28,7 @@
 <div class="col">
   <%= form_tag feature_path(feature.name), :class => "users_form", :method => :put, :remote => true do %>
     <label>Add User ID</label>
-    <input class="users" type="text" name="users[]" value="<%= feature.user_ids.join(",") %>" data-placeholder="Enter User ID" />
+    <input class="users" type="text" name="users[]" value="<%= feature.users.join(",") %>" data-placeholder="Enter User ID" />
     <input type="submit" value="Save" />
   <% end %>
 </div>

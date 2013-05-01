@@ -10,15 +10,15 @@ module RolloutUi
     end
 
     def percentage
-      redis.get(percentage_key(name)) || 0
+      percentage_key(name) || 0
     end
 
     def groups
-      redis.smembers(group_key(name)) || []
+      groups_key(name) || []
     end
 
     def user_ids
-      redis.smembers(user_key(name)) || []
+      users_key(name) || []
     end
 
     def percentage=(percentage)
@@ -26,12 +26,16 @@ module RolloutUi
     end
 
     def groups=(groups)
-      redis.del(group_key(name))
+      groups_key(name).each do |group|
+        rollout.deactivate_group(name, group)
+      end
       groups.each { |group| rollout.activate_group(name, group) unless group.to_s.empty? }
     end
 
     def user_ids=(ids)
-      redis.del(user_key(name))
+      users_key(name).each do |id|
+        rollout.deactivate_user(name, User.new(id))
+      end
       ids.each { |id| rollout.activate_user(name, User.new(id)) unless id.to_s.empty? }
     end
 
@@ -45,8 +49,11 @@ module RolloutUi
       @wrapper.rollout
     end
 
-    [:percentage_key, :group_key, :user_key].each do |method_name|
-      define_method(method_name) {|name| rollout.send(method_name, name)}
+    [:percentage_key, :groups_key, :users_key].each do |method_name|
+      define_method(method_name) do |name|
+        key_name = method_name.to_s.gsub("_key", "").to_sym
+        rollout.get(name).to_hash[key_name]
+      end
     end
 
 

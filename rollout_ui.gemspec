@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = Dir["spec/**/*"]
   gem.require_paths = ["lib"]
 
-  gem.add_runtime_dependency('rollout', '>= 1.1')
+  gem.add_runtime_dependency('rollout', '>= 2.0.0c')
 
   gem.add_development_dependency('rake')
   gem.add_development_dependency('rails')
