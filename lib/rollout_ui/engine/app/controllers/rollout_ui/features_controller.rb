@@ -3,7 +3,7 @@ module RolloutUi
     before_filter :wrapper, :only => [:index, :create]
 
     def index
-      @features = @wrapper.features.map{ |feature| RolloutUi::Feature.new(feature) }
+      @features = @wrapper.features.map{ |feature| RolloutUi.rollout.get(feature) }
     end
 
     def update
