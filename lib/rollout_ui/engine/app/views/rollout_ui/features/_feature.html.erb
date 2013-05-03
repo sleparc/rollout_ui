@@ -16,7 +16,7 @@
   <%= form_tag feature_path(feature.name), :class => "groups_form", :method => :put, :remote => true do %>
     <label>Groups</label>
     <select id="<%= feature.name %>_groups" class="groups" name="groups[]" multiple="multiple" data-placeholder="Choose a group">
-      <% @wrapper.groups.each do |group| %>
+      <% @wrapper.groups.map(&:to_s).sort.each do |group| %>
         <option<%= " selected='selected'" if feature.groups.include?(group) %>><%= group %></option>
       <% end %>
     </select>
