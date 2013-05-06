@@ -27,7 +27,7 @@ module RolloutUi
 
     def groups=(groups)
       groups_key(name).each do |group|
-        rollout.deactivate_group(name, group)
+        rollout.deactivate_group(name, group) unless group.to_s.empty?
       end
       groups.each { |group| rollout.activate_group(name, group) unless group.to_s.empty? }
     end
