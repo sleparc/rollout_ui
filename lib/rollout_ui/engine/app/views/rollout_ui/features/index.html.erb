@@ -3,6 +3,11 @@
   <%= submit_tag 'Create', :id => 'new-feature-submit' %>
 <% end %>
 
+<%= form_tag(groups_path, :id => 'create-temp-group') do %>
+  <%= text_field_tag :name, nil, :id => 'new-group-name', :placeholder => 'Add a new union group' %>
+  <%= submit_tag 'Create', :id => 'new-group-submit' %>
+<% end %>
+
 <ul id="features">
   <% @features.each do |feature| %>
     <li id="<%= feature.name %>" class="feature clearfix"><%= render 'feature', :feature => feature %></li>

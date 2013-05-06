@@ -33,6 +33,13 @@ describe RolloutUi::Wrapper do
     end
   end
 
+  describe "#define_union_group" do
+    it "should define a group in the rollout instance" do
+      @rollout_ui.define_union_group(:test)
+      @rollout_ui.groups.should == [:all, :test]
+    end
+  end
+
   describe "#features" do
     it "returns an empty array if no features have been requested" do
       @rollout_ui.features.should == []

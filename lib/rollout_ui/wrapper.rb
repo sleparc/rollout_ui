@@ -26,5 +26,9 @@ module RolloutUi
       rollout.instance_variable_get("@redis") ||
         rollout.instance_variable_get("@storage")
     end
+
+    def define_union_group(name)
+      rollout.define_group(name) {}
+    end
   end
 end
