@@ -33,9 +33,9 @@ describe RolloutUi::Wrapper do
     end
   end
 
-  describe "#define_union_group" do
+  describe "#define_intersection_group" do
     it "should define a group in the rollout instance" do
-      @rollout_ui.define_union_group(:test)
+      @rollout_ui.define_intersection_group(:test)
       @rollout_ui.groups.should == [:all, :test]
     end
   end

@@ -3,7 +3,7 @@ module RolloutUi
     before_filter :wrapper, :only => [:create]
 
     def create
-      @wrapper.define_union_group(params[:name]) unless params[:name].blank?
+      @wrapper.define_intersection_group(params[:name]) unless params[:name].blank?
       redirect_to features_path
     end
 
